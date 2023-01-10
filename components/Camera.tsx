@@ -7,7 +7,7 @@ const API_KEY = "AIzaSyCSjg-5gB6AfcusutCwL_PrYPXzd9tAly0";
 
 const API_URL = `https://vision.googleapis.com/v1/images:annotate?key=${API_KEY}`;
 
-const MyCamera = () => {
+const MyCamera = ({ navigation }: any) => {
   let cameraRef = useRef<any>();
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [type, setType] = useState(CameraType.back);
@@ -90,7 +90,7 @@ const MyCamera = () => {
 
         <Modal isVisible={open} style={styles.modalContainer}>
           <View style={styles.modal}>
-            <SearchTweet text={text} />
+            <SearchTweet navigation={navigation} text={text} />
             <Button
               title="close"
               onPress={() => {
@@ -140,9 +140,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   modal: {
+    marginBottom: 100,
     borderRadius: 10,
     width: 300,
-    height: 200,
+    height: 240,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
